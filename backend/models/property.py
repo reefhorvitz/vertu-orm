@@ -7,6 +7,8 @@ from backend.models.user import User
 
 class Property(models.Model):
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
+    size = models.IntegerField('Size in sqft')
+    price = models.IntegerField('price $/Month')
     seller = models.ForeignKey(User, on_delete=models.CASCADE)
     year_built = models.IntegerField('Year built')
     bedroom_number = models.IntegerField()

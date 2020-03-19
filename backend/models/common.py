@@ -18,8 +18,9 @@ class City(models.Model):
 
 class Location(models.Model):
     city = models.ForeignKey(City, on_delete=models.CASCADE)
-    street = models.CharField(max_length=200)
-    number = models.IntegerField('House Number')
+    address_one = models.CharField(max_length=200)
+    address_two = models.CharField(max_length=200)
+    zip_code = models.IntegerField()
 
     def __str__(self):
         return f'{self.street} {self.number}, {self.city}'
