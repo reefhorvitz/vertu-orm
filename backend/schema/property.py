@@ -12,6 +12,7 @@ class PropertyNode(DjangoObjectType):
 
 
 class PropertyFilter(df.FilterSet):
+    id = df.BaseInFilter(field_name="pk")
     country = df.CharFilter(field_name='location__city__country__name')
     city = df.CharFilter(field_name='location__city__name')
     amenities = df.BaseInFilter(field_name='amenities__name')
@@ -20,7 +21,7 @@ class PropertyFilter(df.FilterSet):
 
     class Meta:
         model = Property
-        fields = ['bedroom_number', 'country', 'city', 'bathroom_number', 'amenities', 'facilities', 'tags']
+        fields = ['id', 'bedroom_number', 'country', 'city', 'bathroom_number', 'amenities', 'facilities', 'tags']
 
 
 class Query:
