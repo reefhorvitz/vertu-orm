@@ -18,9 +18,13 @@ class City(models.Model):
 
 class Location(models.Model):
     city = models.ForeignKey(City, on_delete=models.CASCADE)
-    address_one = models.CharField(max_length=200)
-    address_two = models.CharField(max_length=200)
-    zip_code = models.IntegerField()
+    address_one = models.CharField(max_length=200, null=True, blank=True)
+    address_two = models.CharField(max_length=200, null=True, blank=True)
+    zip_code = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
-        return f'{self.street} {self.number}, {self.city}'
+        return f'{self.address_one}, {self.city}'
+
+
+class Image(models.Model):
+    url = models.CharField('Image url', max_length=200)

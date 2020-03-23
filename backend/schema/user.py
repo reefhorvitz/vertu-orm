@@ -1,18 +1,27 @@
 import django_filters as df
 from graphene_django import DjangoObjectType
 from graphene_django.filter import DjangoFilterConnectionField
-from backend.models import User
+from backend.models import UserBase, Agent
 from backend.schema.node import RegularIdNode
 
+fields = ['email', 'first_name', 'last_name', 'image', 'phone']
 
-class UserNode(DjangoObjectType):
+
+class UserBaseNode(DjangoObjectType):
     class Meta:
-        model = User
+        model = UserBase
         interfaces = (RegularIdNode,)
-        fields = ['email', 'first_name', 'last_name']
+        fields = fields
         filter_fields = fields
 
 
+class AgentNode(DjangoObjectType):
+    class Meta:
+        model = Agent
+        fields = fields
+
+
 class Query:
-    user = RegularIdNode.Field(UserNode)
-    all_users = DjangoFilterConnectionField(UserNode)
+    user = RegularIdNode.Field(UserBaseNode)
+    all_users = DjangoFilterConnectionField(UserBaseNode)
+    agent = RegularIdNode.Field(AgentNode)

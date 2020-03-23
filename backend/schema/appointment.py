@@ -9,7 +9,7 @@ class AppointmentNode(DjangoObjectType):
     class Meta:
         model = Appointment
         interfaces = (RegularIdNode,)
-        filter_fields = ['customer__id', 'seller__id']
+        filter_fields = ['customer__id']
 
 
 class Query:

@@ -2,7 +2,7 @@ import django_filters as df
 from graphene_django import DjangoObjectType
 from graphene_django.filter import DjangoFilterConnectionField
 
-from backend.models import Country, City, Location
+from backend.models import Country, City, Location, Image
 from backend.schema.node import RegularIdNode
 
 
@@ -52,6 +52,10 @@ class LocationFilter(df.FilterSet):
         fields = ['country_name', 'city_name']
 
 
+class ImageNode(DjangoObjectType):
+    class Meta:
+        model = Image
+
 class Query:
     country = RegularIdNode.Field(CountryNode)
     city = RegularIdNode.Field(CityNode)
@@ -59,3 +63,4 @@ class Query:
     all_countries = DjangoFilterConnectionField(CountryNode, filterset_class=CountryFilter)
     all_cities = DjangoFilterConnectionField(CityNode, filterset_class=CityFilter)
     all_locations = DjangoFilterConnectionField(LocationNode, filterset_class=LocationFilter)
+    image = RegularIdNode.Field(ImageNode)
