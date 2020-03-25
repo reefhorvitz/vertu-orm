@@ -9,9 +9,17 @@ class AppointmentNode(DjangoObjectType):
     class Meta:
         model = Appointment
         interfaces = (RegularIdNode,)
-        filter_fields = ['customer__id']
+
+
+class AppointmentFilter(df.FilterSet):
+    customer_id = df.NumberFilter(field_name='customer__id')
+    seller_id = df.CharFilter(field_name='property__seller__id')
+
+    class Meta:
+        model = Appointment
+        fields = ['customer_id', 'seller_id']
 
 
 class Query:
     appointment = RegularIdNode.Field(AppointmentNode)
-    all_appointments = DjangoFilterConnectionField(AppointmentNode)
+    all_appointments = DjangoFilterConnectionField(AppointmentNode, filterset_class=AppointmentFilter)
