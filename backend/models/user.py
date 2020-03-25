@@ -5,15 +5,14 @@ from backend.models.property_metadata import Tag
 
 class UserBase(models.Model):
     email = models.CharField(max_length=200, unique=True)
-    first_name = models.CharField(max_length=200)
-    last_name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200)
     password = models.CharField(max_length=200, blank=True, null=True)
     phone = models.CharField(max_length=200, null=True, blank=True)
     type = models.CharField(max_length=100)
     image = models.ForeignKey(Image, null=True, blank=True, on_delete=models.SET_NULL)
 
     def __str__(self):
-        return f'{self.first_name} {self.last_name}'
+        return self.name
 
 
 class Agent(UserBase):

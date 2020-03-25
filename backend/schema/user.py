@@ -4,7 +4,7 @@ from graphene_django.filter import DjangoFilterConnectionField
 from backend.models import UserBase, Agent
 from backend.schema.node import RegularIdNode
 
-fields = ['email', 'first_name', 'last_name', 'image', 'phone']
+fields = ['email', 'name', 'image', 'phone']
 
 
 class UserBaseNode(DjangoObjectType):

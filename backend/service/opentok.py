@@ -20,4 +20,4 @@ def generate_token(appointment_id):
         appointment.session_id = session_id
         appointment.save()
     token = opentok.generate_token(session_id)
-    return session_id, token
+    return api_key, session_id, token

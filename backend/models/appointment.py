@@ -12,4 +12,4 @@ class Appointment(models.Model):
     session_id = models.CharField('opentok sessionId', max_length=200, null=True, blank=True)
 
     def __str__(self):
-        return f'{self.customer.first_name} appointment about property {self.property.id}'
+        return f'{self.customer.name} appointment about property {self.property.id}'
