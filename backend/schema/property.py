@@ -22,11 +22,12 @@ class PropertyFilter(df.FilterSet):
     max_price = df.NumberFilter(field_name='price', lookup_expr='lte')
     bedroom_number = df.NumberFilter(field_name='bedroom_number', lookup_expr='gte')
     bathroom_number = df.NumberFilter(field_name='bathroom_number', lookup_expr='gte')
+    seller_id = df.NumberFilter(field_name='seller__id')
 
     class Meta:
         model = Property
         fields = ['id', 'bedroom_number', 'country', 'city', 'city_id', 'bathroom_number', 'amenities', 'facilities',
-                  'tags', 'max_price']
+                  'tags', 'max_price', 'seller_id']
 
 
 class Query:

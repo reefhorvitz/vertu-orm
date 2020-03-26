@@ -13,7 +13,7 @@ class AppointmentNode(DjangoObjectType):
 
 class AppointmentFilter(df.FilterSet):
     customer_id = df.NumberFilter(field_name='customer__id')
-    seller_id = df.CharFilter(field_name='property__seller__id')
+    seller_id = df.NumberFilter(field_name='property__seller__id')
 
     class Meta:
         model = Appointment
