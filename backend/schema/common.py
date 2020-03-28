@@ -56,6 +56,7 @@ class ImageNode(DjangoObjectType):
     class Meta:
         model = Image
 
+
 class Query:
     country = RegularIdNode.Field(CountryNode)
     city = RegularIdNode.Field(CityNode)
