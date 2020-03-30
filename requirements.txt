@@ -7,3 +7,4 @@ opentok
 djangorestframework
 boto3
 djangorestframework_simplejwt
+mysqlclient

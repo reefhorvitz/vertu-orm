@@ -20,6 +20,7 @@ class PropertyFilter(df.FilterSet):
     facilities = df.BaseInFilter(field_name='facilities__name')
     tags = df.BaseInFilter(field_name='tags__name')
     max_price = df.NumberFilter(field_name='price', lookup_expr='lte')
+    min_price = df.NumberFilter(field_name='price', lookup_expr='gte')
     bedroom_number = df.NumberFilter(field_name='bedroom_number', lookup_expr='gte')
     bathroom_number = df.NumberFilter(field_name='bathroom_number', lookup_expr='gte')
     seller_id = df.NumberFilter(field_name='seller__id')
@@ -27,7 +28,7 @@ class PropertyFilter(df.FilterSet):
     class Meta:
         model = Property
         fields = ['id', 'bedroom_number', 'country', 'city', 'city_id', 'bathroom_number', 'amenities', 'facilities',
-                  'tags', 'max_price', 'seller_id']
+                  'tags', 'max_price', 'min_price', 'seller_id']
 
 
 class Query:
