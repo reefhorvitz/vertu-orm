@@ -2,10 +2,11 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('opentok/<int:appointment_id>/', views.opentok),
+    path('opentok/<int:appointment_id>/', views.OpenTok.as_view()),
     path('login/', views.validate_login),
-    path('appointments/', views.appointments),
-    path('upload-image/', views.upload_image),
-    path('properties/metadata/', views.property_metadata),
-    path('properties/', views.create_property),
+    path('appointments/', views.Appointments.as_view()),
+    path('upload-image/', views.UploadImage.as_view()),
+    path('properties/metadata/', views.PropertyMetadata.as_view()),
+    path('properties/', views.Property.as_view()),
+    path('users/', views.UserList.as_view()),
 ]

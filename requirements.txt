@@ -1,3 +1,4 @@
+djangorestframework-jwt
 django
 django-filter
 django-extensions
@@ -5,3 +6,4 @@ graphene-django
 opentok
 djangorestframework
 boto3
+djangorestframework_simplejwt

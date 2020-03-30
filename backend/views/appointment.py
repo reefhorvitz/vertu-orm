@@ -1,6 +1,7 @@
 import json
 
 from django.http import JsonResponse
+from rest_framework.views import APIView
 
 from backend.models import Appointment
 from backend.service import appointment as service
@@ -13,8 +14,8 @@ class AppointmentSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-def appointments(request):
-    if request.method == "POST":
+class Appointments(APIView):
+    def post(self, request):
         body = json.loads(request.body)
         time = body['time']
         user_id = body['userId']

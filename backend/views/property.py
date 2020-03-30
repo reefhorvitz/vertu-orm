@@ -1,7 +1,7 @@
 import json
-
 from django.http import JsonResponse
 from rest_framework import serializers
+from rest_framework.views import APIView
 from backend import service
 from backend.models import Property
 
@@ -12,8 +12,8 @@ class PropertySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-def create_property(request):
-    if request.method == 'POST':
+class Property(APIView):
+    def post(self, request):
         body = json.loads(request.body)
         address_one = body['addressOne']
         address_two = body['addressTwo']

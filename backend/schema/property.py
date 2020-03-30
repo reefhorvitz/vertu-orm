@@ -15,7 +15,7 @@ class PropertyFilter(df.FilterSet):
     id = df.BaseInFilter(field_name="pk")
     country = df.CharFilter(field_name='location__city__country__name')
     city = df.CharFilter(field_name='location__city__name')
-    city_id = df.BaseInFilter(field_name='location__city__pk')
+    city_id = df.NumberFilter(field_name='location__city__pk')
     amenities = df.BaseInFilter(field_name='amenities__name')
     facilities = df.BaseInFilter(field_name='facilities__name')
     tags = df.BaseInFilter(field_name='tags__name')

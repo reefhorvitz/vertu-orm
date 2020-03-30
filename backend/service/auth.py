@@ -2,7 +2,7 @@ from backend.models import User, Agent, UserBase
 from django.shortcuts import get_object_or_404
 
 
-def validate_login(email, token, password):
+def validate_login(email, token):
     # TODO: add token validation
     user = get_object_or_404(UserBase, email=email)
     return user

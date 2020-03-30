@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -27,13 +26,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
     'corsheaders',
     'graphene_django',
     'backend.apps.BackendConfig',
+    'rest_framework',
     'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,11 +40,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'rest_framework.authtoken',#new
+    # 'django.contrib.sites',#new
+    # 'allauth',#new
+    # 'allauth.account',#new
+    # 'rest_auth.registration',#new
+    # 'rest_auth',  # new
+    # 'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.facebook',
 ]
-
-GRAPHENE = {
-    'SCHEMA': 'orm.schema.schema'
-}
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -59,8 +62,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'orm.urls'
-
-CORS_ORIGIN_ALLOW_ALL = True
 
 TEMPLATES = [
     {
@@ -77,9 +78,39 @@ TEMPLATES = [
         },
     },
 ]
+# CUSTOM ADDITIONS
+
+GRAPHENE = {
+    'SCHEMA': 'orm.schema.schema'
+}
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+# ACCOUNT_USERNAME_REQUIRED = False
+
+# SITE_ID = 1
+
+
+# AUTH_USER_MODEL = 'backend.AuthUser'
+
+# ACCOUNT_AUTHENTICATION_METHOD = 'email'
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_PERMISSION_CLASSES': (
+#         'rest_framework.permissions.IsAuthenticated',
+#     ),
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+#         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+#         'rest_framework.authentication.SessionAuthentication',
+#         'rest_framework.authentication.BasicAuthentication',
+#     ),
+# }
+
+# REST_USE_JWT = True
+
+# END OF CUSTOM ADDITIONS
 
 WSGI_APPLICATION = 'orm.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -93,12 +124,12 @@ DATABASES = {
         'PASSWORD': 'root',
         'PORT': 3306,
         'OPTIONS': {
+            "init_command": "SET foreign_key_checks = 0;",
             'sql_mode': 'traditional',
             'charset': 'utf8mb4',
         }
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -118,7 +149,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -131,7 +161,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
