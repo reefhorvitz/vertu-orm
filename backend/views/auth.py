@@ -10,12 +10,12 @@ from backend.models import UserBase
 # from rest_auth.registration.views import SocialLoginView
 
 
-class UserSerializer(serializers.ModelSerializer):
+class UserBaseSerializer(serializers.ModelSerializer):
     image = serializers.ReadOnlyField(source='image.url')
 
     class Meta:
         model = UserBase
-        fields = "__all__"
+        exclude = ("password",)
 
 
 def validate_login(request):
@@ -23,25 +23,25 @@ def validate_login(request):
         email = request.GET.get('email')
         token = request.GET.get('token')
         user = service.validate_login(email, token)
-        user = UserSerializer(user).data
+        user = UserBaseSerializer(user).data
         return JsonResponse(user)
 
 
-class UserList(APIView):
-    """
-    Create a new user. It's called 'UserList' because normally we'd have a get
-    method here too, for retrieving a list of all User objects.
-    """
-
-    permission_classes = (permissions.AllowAny,)
-
-    def post(self, request):
-        serializer = UserSerializerWithToken(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
-        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+# class UserList(APIView):
+#     """
+#     Create a new user. It's called 'UserList' because normally we'd have a get
+#     method here too, for retrieving a list of all User objects.
+#     """
+#
+#     permission_classes = (permissions.AllowAny,)
+#
+#     def post(self, request):
+#         serializer = UserSerializerWithToken(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
+#         return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#
 
 # class FacebookLogin(SocialLoginView):
 #     adapter_class = FacebookOAuth2Adapter

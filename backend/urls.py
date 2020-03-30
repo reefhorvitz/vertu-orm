@@ -8,5 +8,6 @@ urlpatterns = [
     path('upload-image/', views.UploadImage.as_view()),
     path('properties/metadata/', views.PropertyMetadata.as_view()),
     path('properties/', views.Property.as_view()),
-    path('users/', views.UserList.as_view()),
+    # path('users/', views.UserList.as_view()),
+    path('users/<int:user_id>/', views.User)
 ]
