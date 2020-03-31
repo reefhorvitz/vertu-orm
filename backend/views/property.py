@@ -16,7 +16,7 @@ class Property(APIView):
     def post(self, request):
         body = json.loads(request.body)
         address_one = body['addressOne']
-        address_two = body['addressTwo']
+        address_two = body.get('addressTwo')
         zip_code = body['zipCode']
         city_id = body['city']
         size = body['size']
@@ -33,9 +33,9 @@ class Property(APIView):
         amenities_ids = body['amenitiesIds']
         facilities_ids = body['facilitiesIds']
         other_data_ids = body['otherDataIds']
-        images_ids = body['images']
+        images = body['images']
         apartment = service.create_property(address_one, address_two, zip_code, city_id, size, price, seller_id,
                                             year_built, bedroom_number, bathroom_number, heating_id, cooling_id,
                                             parking_id, type_id, tags_id, amenities_ids, facilities_ids,
-                                            other_data_ids, images_ids)
+                                            other_data_ids, images)
         return JsonResponse(PropertySerializer(apartment).data)
